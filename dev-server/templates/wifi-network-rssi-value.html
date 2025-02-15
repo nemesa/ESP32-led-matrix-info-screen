@@ -1,0 +1,19 @@
+<!-- ko if: $data >= -30 -->
+<span>Amazing</span>
+<!-- /ko -->
+
+<!-- ko if: -70 <= $data &&  $data < -30 -->
+<span>Excellent</span>
+<!-- /ko -->
+
+<!-- ko if: -85 <= $data && $data < -70 -->
+<span>Good</span>
+<!-- /ko -->
+
+<!-- ko if: -100 <= $data && $data < -85 -->
+<span>Fair</span>
+<!-- /ko -->
+
+<!-- ko if: $data < -100 -->
+<span>Poor</span>
+<!-- /ko -->

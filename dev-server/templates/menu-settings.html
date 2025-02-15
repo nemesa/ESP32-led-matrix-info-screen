@@ -1,0 +1,79 @@
+<div data-bind="if: isLoaderVisible">
+   <div class="spining-loader-container">
+      <div class="spining-loader"></div>
+   </div>
+</div>
+<div data-bind="ifnot: isLoaderVisible">
+   <div>
+      <div>Conncetions</div>
+      <div style="margin-left: 10px;">
+         <button class="icon-button-with-text" data-bind="click: onWifiConnectionsClicked">
+            <div class="icon-button-body">
+               <div class="icon-container" data-bind="template:{name:'icon-wifi-solid'}">
+               </div>
+               <div>&nbsp;Scan Wifi Networks</div>
+            </div>
+         </button>
+
+
+         <button class="icon-button-with-text" data-bind="click: onConnectionInfoClicked">
+            <div class="icon-button-body">
+               <div class="icon-container" data-bind="template:{name:'icon-network-wired-solid'}"></div>
+               <div>&nbsp;Connection Info</div>
+            </div>
+         </button>
+      </div>
+   </div>
+
+   <div style="margin-top: 10px;">
+      <div>Raw Configuration</div>
+      <div style="margin-left: 10px;">
+         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+            <button class="icon-button-with-text" data-bind="click: onRefreshSettingsClicked">
+               <div class="icon-button-body">
+                  <div class="icon-container" data-bind="template:{name:'icon-arrows-rotate-solid'}"></div>
+                  <div>&nbsp;Refresh</div>
+               </div>
+            </button>
+         </div>
+         <div>
+            <label for="ap_ssid">AP SSID:</label>
+            <input type="text" id="ap_ssid" data-bind="value: ap_ssid" />
+         </div>
+
+         <div>
+            <label for="ap_password">AP Password:</label>
+            <input id="ap_password" data-bind="value: ap_password, attr: { type: ap_password_type_attr }" />
+            <input type="checkbox" id="ap_password_visible" data-bind="checked: ap_password_visible" />
+         </div>
+
+         <div>
+            <button data-bind='click: onDisconnectClicked'>Disconnect and forget Wifi</button>
+         </div>
+
+         <div>
+            <label for="connect_to_ssid">Network to connect SSID:</label>
+            <input type="text" id="connect_to_ssid" data-bind="value: connect_to_ssid" />
+         </div>
+
+
+         <div>
+            <label for="connect_to_password">Network to connect Password:</label>
+            <input id="connect_to_password"
+               data-bind="value: connect_to_password, attr: { type: connect_to_password_type_attr }" />
+            <input type="checkbox" id="connect_to_password_visible" data-bind="checked: connect_to_password_visible" />
+         </div>
+
+         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+            <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
+               <div class="icon-button-body">
+                  <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
+                  <div>&nbsp;Save</div>
+               </div>
+            </button>
+         </div>
+
+      </div>
+   </div>
+
+</div>

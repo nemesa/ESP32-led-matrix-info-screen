@@ -1,0 +1,20 @@
+<div>
+    Connection info
+</div>
+
+
+<div>
+    IP Address: <span data-bind="text:ipAddress"></span>
+</div>
+<div>
+    Signal strength:
+    <div style="display: inline-block;" data-bind="if: rssi()!==null">
+        <div style="display: inline-block;" data-bind=" template: { name: 'wifi-network-rssi-value', data: rssi }">
+        </div> (<span data-bind="text:rssi"></span> dBm)
+    </div>
+</div>
+
+<div>
+    Status:
+    <span data-bind="text:getStatusText()"></span>
+</div>

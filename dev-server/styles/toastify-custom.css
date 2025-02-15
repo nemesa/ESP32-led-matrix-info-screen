@@ -1,0 +1,38 @@
+.my-toastify-card {
+    color: black !important;
+    background-color: white !important;
+    background: white !important;
+    border-style: solid !important;
+
+    border-top: 1px black;
+    border-left: 1px black;
+    border-right: 1px black;
+    border-bottom: 1px black;
+}
+
+.my-toastify-card.danger {
+    border-left: 5px solid #b00000 !important;
+    border-top: 1px solid #b00000 !important;
+    border-right: 1px solid #b00000 !important;
+    border-bottom: 1px solid #b00000 !important;
+}
+
+
+.my-toastify-card.success {
+    border-left: 5px solid #198603 !important;
+    border-top: 1px solid #198603 !important;
+    border-right: 1px solid #198603 !important;
+    border-bottom: 1px solid #198603 !important;
+}
+
+
+.my-toastify-card.info {
+    border-left: 5px solid #200386 !important;
+    border-top: 1px solid #200386 !important;
+    border-right: 1px solid #200386 !important;
+    border-bottom: 1px solid #200386 !important;
+}
+
+.my-toastify-card button {
+    color: black !important;
+}

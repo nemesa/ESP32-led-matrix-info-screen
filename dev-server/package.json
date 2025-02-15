@@ -1,0 +1,21 @@
+{
+  "name": "dev-server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nodemon ./dev-server-index.ts",
+    "build": "ts-node ./build-disc.ts",
+    "copy-disc-to-esp32-app": "cp ./disc/index.html ../PlatformIO/ESP32_APP/data/index.html",
+    "updateESP32Files": "npm run build && npm run copy-disc-to-esp32-app"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "nodemon": "^3.1.9"
+  }
+}

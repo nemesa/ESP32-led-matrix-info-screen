@@ -1,0 +1,58 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #C5CEFF;
+}
+
+.app-container {
+    padding: 5px;
+    background-color: #FFDB8657;
+    width: 100%;
+
+}
+
+.active-menu-container {}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.icon-container {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.icon-button-with-text {
+    height: 40px;
+    min-width: 100px;
+}
+
+
+.icon-button-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

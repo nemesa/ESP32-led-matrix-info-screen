@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link id="favicon" rel="shortcut icon" type="image/png"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFM0lEQVR4nO2a2W9VVRTGf61BRaW0Di++iLTw5IDDg1ERp2g0mjhQVBK1ElBwqmjC4JM4NTxo9B+oGJ8cMCZiEHGWiAoiDikyqC8OlRrEgoJYe8xKvk1WNueec+695xZq+JKT9J717XXOOntYa3+7cBiFMV7XqEE7MAdYBnwK7ACS6Nohm3Fmq80hgTZgPvBFyksXvTYAD8jXiOMEYCkw6F7I/h5yv18ELnS/pwIvud9DUfs/gJ6RCqgJmAUMuBd4E7gZWKzffwG3uTaBF3A7sEf3rM0twCrH2w506VkNwfHAa+6BHwIXyHYx8A8wDEyP2sWBGDrFtTbTdM967yPHf7URvTMZ+N4NIfuqAWOATbI9ktI2LRDDo7q/ST4CrDd2ybYN6CgriLOAX+V4fYrjB2X7FjiyikCMu1k28+ExCfhcNnv2lDJ6IgTxLnBcZB+rMW32qyr4qBSI4Wo3L8yXxzjgfRdMzT3T5oZTH3BMCudO2b/M8JMVCGqbKK/EONYN261AK1WiKZrYYejcEzn7RLZ5dQQyT/a17t543Q9DL1zLq13NZrmJvRD4zjnbp+VyseO01BFIi5vcC4A3gL2unfXEQy7n+IUmN9kNRF/6CC2rqxSI/0q7df9ZYC5wJXAuMFG9F3ituneOOHcBTwMrXSCJS5artUzbs9FoCPOl0LK8VA0+AJor5JMuN8nLvAZUr52Y8txml2esAshEm+vCkOzSYON0p3jnAddoWPTqS67XQvG7e8mdumfL6tsqHBcB1wHnO05TxnOnunIms1dCTliTE/Ak8X4kH3lzJOBn8fIq4o/F684ihSr2hhxnneK9XmIgK8SbXvDZ1uupaBfhT+DoHGc94i4pMZDHxHsihzdWhalxJ6QR5shoXyYPy8WdUWIgVkEb7+UC3JXiWpo4AM/LeF8BR6F0uKTEQC51pVAeusV9Ls34mYxWkufhG3FPKzGQM8T7qgD38pRqYD/CHvvUKlaYk0sMxHwl8p2HMJ9/S0s2w8qofm9QCX/LUVrZXmsg5mtYvvPqqTF613/jpN3SgCw9Ute4/2UgzTUOraNKHFrmK1HlS61Da7RN9omVJjtSAIsuv1+Le3qJgZxZYLcZcJm4VncdgGWjMCH2phlny2g7tDy8Iu5Nh2KJ0u6KxljRiPGkuKZNHcyi8ZRKpA0i3FiwlF5RYiA2Eqop49dlkeaLZHVXFjrE+6nEQH4Rz1akLKwV7/4sUpu2kYm02CJbXdumXi9V5QVNVtug/eA4lba6tj2+VtvlwMkqTy5yvFyNq8eJ1Gniw0nau3hFvqxru4QNEzhiNGsLXmQe7e+VoJCYBIMkGdtEvROdgSSScmwVeUoBWol9thJrJTnoCslBz0hK2h353Ae8FclB98rWX43i2KVGgxLHtrqH7NUkX+ACqVegG1SJtEjnLaEESiQOLnTqzq1UgSadT8SS6dzopRslmbYCd+uZ/h2K5JjUIbbNidgmKFcSsTfWEcjGHBG7T/Yt9ZwOd7hjhffikrnBxwotrhTqL+MEeIocJUqYJs6liXqb6zjosfzlMdlpbP0qKEtBhxtmu7QYpB29LakikFCS9EV7oDucqL2lEWfxrU7PSrSmh6Q5zR2GdhYIZIY7DLUkF3TdNdHEbth/TDTpfCLMm0Tr/UzgYf3eE/VYHEhXdDw9U8J34PVXu8TWgzZVAKGcSfT3UPRF438YCOV/pX8YeLyW47WyAuqWoFxrWbJOPg5KAGmYoI1OrxJlWi02oMTXK27F/cShiJacEuYwcPgPknvUyL7T8dYAAAAASUVORK5CYII=">
+
+<head>
+
+    <script src="/ko.js"></script>
+    <script src="/toast.js"></script>
+
+    <script type="text/javascript">
+        function init() {
+            if (ko) {
+                document.getElementById("main-app").style.display = "block";
+                document.getElementById("ko-js-error").style.display = "none";
+                const mainViewModel = new MainViewModel();
+                ko.applyBindingsToDescendants(mainViewModel, document.getElementById("main-app"));                
+            }
+        }
+    </script>
+<style>
+.spining-loader-container {
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.spining-loader {
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid;
+    border-color: #000 #0000;
+    animation: spining-loader-frames 1s infinite;
+}
+
+@keyframes spining-loader-frames {
+    to {
+        transform: rotate(.5turn)
+    }
+}
+
+
+
+.bar-loader {
+    width: 45px;
+    aspect-ratio: .75;
+    --c: no-repeat linear-gradient(#000 0 0);
+    background:
+        var(--c) 0% 100%,
+        var(--c) 50% 100%,
+        var(--c) 100% 100%;
+    background-size: 20% 65%;
+    animation: bar-loader-frames 1s infinite linear;
+}
+
+@keyframes bar-loader-frames {
+    20% {
+        background-position: 0% 50%, 50% 100%, 100% 100%
+    }
+
+    40% {
+        background-position: 0% 0%, 50% 50%, 100% 100%
+    }
+
+    60% {
+        background-position: 0% 100%, 50% 0%, 100% 50%
+    }
+
+    80% {
+        background-position: 0% 100%, 50% 100%, 100% 0%
+    }
+}
+</style>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 12px 5px;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: #C5CEFF;
+}
+
+.app-container {
+    padding: 5px;
+    background-color: #FFDB8657;
+    width: 100%;
+
+}
+
+.active-menu-container {}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.icon-container {
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.icon-button-with-text {
+    height: 40px;
+    min-width: 100px;
+}
+
+
+.icon-button-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<style>
+.my-toastify-card {
+    color: black !important;
+    background-color: white !important;
+    background: white !important;
+    border-style: solid !important;
+
+    border-top: 1px black;
+    border-left: 1px black;
+    border-right: 1px black;
+    border-bottom: 1px black;
+}
+
+.my-toastify-card.danger {
+    border-left: 5px solid #b00000 !important;
+    border-top: 1px solid #b00000 !important;
+    border-right: 1px solid #b00000 !important;
+    border-bottom: 1px solid #b00000 !important;
+}
+
+
+.my-toastify-card.success {
+    border-left: 5px solid #198603 !important;
+    border-top: 1px solid #198603 !important;
+    border-right: 1px solid #198603 !important;
+    border-bottom: 1px solid #198603 !important;
+}
+
+
+.my-toastify-card.info {
+    border-left: 5px solid #200386 !important;
+    border-top: 1px solid #200386 !important;
+    border-right: 1px solid #200386 !important;
+    border-bottom: 1px solid #200386 !important;
+}
+
+.my-toastify-card button {
+    color: black !important;
+}
+</style>
+<style>
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */
+
+ .toastify {
+    padding: 12px 20px;
+    color: #ffffff;
+    display: inline-block;
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12), 0 10px 36px -4px rgba(77, 96, 232, 0.3);
+    background: -webkit-linear-gradient(315deg, #73a5ff, #5477f5);
+    background: linear-gradient(135deg, #73a5ff, #5477f5);
+    position: fixed;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    max-width: calc(50% - 20px);
+    z-index: 2147483647;
+}
+
+.toastify.on {
+    opacity: 1;
+}
+
+.toast-close {
+    background: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    opacity: 0.4;
+    padding: 0 5px;
+}
+
+.toastify-right {
+    right: 15px;
+}
+
+.toastify-left {
+    left: 15px;
+}
+
+.toastify-top {
+    top: -150px;
+}
+
+.toastify-bottom {
+    bottom: -150px;
+}
+
+.toastify-rounded {
+    border-radius: 25px;
+}
+
+.toastify-avatar {
+    width: 1.5em;
+    height: 1.5em;
+    margin: -7px 5px;
+    border-radius: 2px;
+}
+
+.toastify-center {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    max-width: fit-content;
+    max-width: -moz-fit-content;
+}
+
+@media only screen and (max-width: 360px) {
+    .toastify-right, .toastify-left {
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        max-width: fit-content;
+    }
+}
+
+</style>
+
+<script type="text/javascript">
+class AjaxHandler {
+    constructor() {
+
+    }
+
+    async dealay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async scanWifi() {
+        const response = await this.scanWifiNetworks();        
+        if (response == "OK") {
+            let hasResult = false;
+            while (!hasResult) {
+                const results = await this.scanWifiNetworkResults()
+                if (results && results.networks && results.networks.length > 0) {
+                    hasResult = true;
+                    return results;
+                }
+                await this.dealay(1000);
+            }
+        }
+    }
+
+    async scanWifiNetworks() {
+        const response = await fetch('/scan-wifi', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.text();
+    }
+
+    async connectionInfo() {
+        const response = await fetch('/connection-info', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.json();
+    }
+
+    
+
+    async scanWifiNetworkResults() {
+        const response = await fetch('/scan-wifi-result', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.json();
+    }
+
+    async settings() {
+        const response = await fetch('/settings', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.json();
+    }
+
+    async connectoToNetwork(ssid, password) {
+        const response = await fetch('/connect-wifi', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ssid: ssid,
+                password: password
+            })
+        });
+        return response.text();
+    }
+
+    async saveSettings(settings) {
+        const response = await fetch('/settings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(settings)
+        });
+        return response.json();
+    }
+}
+
+
+</script>
+<script type="text/javascript">
+class ConnectionInfoViewModel {
+    constructor(ajaxHandler) {
+
+        this.ajaxHandler = ajaxHandler;
+        this.doConnectionPolling = ko.observable(false);
+
+        this.afterMenuRequested = () => { };
+
+        this.startPolling = () => {
+            console.log("start polling");
+            this.doConnectionPolling(true);
+        }
+
+        this.stopPolling = () => {
+            console.log("stop polling");
+            this.doConnectionPolling(false);
+        }
+
+        this.ipAddress = ko.observable('');
+        this.rssi = ko.observable(null);
+        this.last_status = 6
+        this.status = ko.observable(6);
+
+        this.hasIpAddress = ko.pureComputed(() => {
+            if (this.doConnectionPolling() && this.ipAddress()) {
+                return true;
+            }
+            return false;
+        }, this);
+
+        ko.computed(() => {
+            if (this.doConnectionPolling()) {
+                this.startPolling();
+            }
+            else {
+                this.stopPolling();
+            }
+        }, this);
+
+        this.inPoll = false;
+
+        this.getStatusText = () => {
+            switch (this.status()) {
+                case 0: return "No Shiled";//"WL_NO_SHIELD";
+                case 1: return "Idle";//"WL_IDLE_STATUS";
+                case 2: return "No SSID avaliable";//"WL_NO_SSID_AVAIL";
+                case 3: return "Connected";//"WL_CONNECTED";
+                case 4: return "Connection Failed";//"WL_CONNECT_FAILED";
+                case 5: return "Connection Lost";//"WL_CONNECTION_LOST";
+                case 6: return "Disconnected";//"WL_DISCONNECTED";
+                default: return "UNKNOWN";
+            }
+        }
+
+        this.getInfo = () => {
+            this.ajaxHandler.connectionInfo().then((response) => {
+                this.ipAddress(response.ip);
+                this.rssi(response.rssi);
+                this.status(response.status);
+
+                if (this.last_status !== response.status && response.status !== 3 /*WL_CONNECTED*/) {
+                    toast(`Connection status: ${this.getStatusText()}`, "danger", true);
+                }
+                this.last_status = response.status;
+
+            }).catch((e) => {
+                toast_error("connection-status-pooller connectionInfo", e, true);
+            }).finally(() => {
+                this.inPoll = false;
+            });
+        }
+
+        const interval = setInterval(() => {
+            const doPolling = this.doConnectionPolling();
+            if (doPolling) {
+                try {
+                    if (!this.inPoll) {
+                        this.inPoll = true;
+                        this.getInfo();
+                    }
+                } catch (error) {
+                    toast_error("connection-status-pooller", e, true);
+                    this.inPoll = false;
+                }
+            }
+        }, 5000);
+
+        this.killTimer = () => {
+            clearInterval(interval);
+        }
+
+        this.getInfo();
+    }
+};
+</script>
+<script type="text/javascript">
+class MainViewModel {
+    constructor() {
+
+        this.menuHandler = new MenuHandler();
+
+        this.ajaxHandler = new AjaxHandler();
+        this.connectionInfo = new ConnectionInfoViewModel(this.ajaxHandler);
+
+        const menus = this.menuHandler.menuKeys;
+        this.menuHandler.registerMenu(menus.home, 'menu-home', new MenuHomeViewModel(this.menuHandler));
+        this.menuHandler.registerMenu(menus.connectToWifi, 'menu-connect-to-wifi', new MenuConnectToWifiViewModel(this.menuHandler, this.ajaxHandler, this.connectionInfo));
+        this.menuHandler.registerMenu(menus.settings, 'menu-settings', new MenuSettingsViewModel(this.menuHandler, this.ajaxHandler, this.connectionInfo));
+        this.menuHandler.registerMenu(menus.connectionInfo, 'menu-connecion-info', this.connectionInfo);
+
+        this.menuHandler.setMenu(menus.home);
+    }
+
+
+};
+</script>
+<script type="text/javascript">
+class MenuConnectToWifiViewModel {
+    constructor(menuHandler, ajaxHandler, connectionInfo) {
+        this.ajaxHandler = ajaxHandler
+        this.connectionInfo = connectionInfo;
+
+        this.ajaxHandler = ajaxHandler
+        this.scanWifiNetworksButtonDisable = ko.observable(false);
+        this.isTryToConnectToWifi = ko.observable(false);
+        this.lastScanResults = ko.observableArray([]);
+        this.isLoaderVisible = ko.observable(false);
+
+        this.transformWifiScanResultToViewModel = (response, onConnectCallback) => {
+            if (response && response.networks && response.networks.length > 0) {
+
+                const resultLookup = {}
+                response.networks.forEach(network => {
+                    const key = network.SSID + "_" + network.EncryptionType;
+                    if (!resultLookup[key]) {
+                        resultLookup[key] = network;
+                    } else {
+                        if (parseInt(network.RSSI) > parseInt(resultLookup[key].RSSI)) {
+                            resultLookup[key] = network;
+                        }
+                    }
+                });
+
+                return Object.values(resultLookup).map((scanResult) => new WifiNetworkListItem(scanResult, onConnectCallback));
+            }
+            return [];
+        }
+
+        this.scanWifiNetworks = async () => {
+            try {
+                this.isLoaderVisible(true);
+                this.lastScanResults.removeAll();
+                this.scanWifiNetworksButtonDisable(true);
+                this.isTryToConnectToWifi(false);
+                const response = await this.ajaxHandler.scanWifi();
+                this.lastScanResults(this.transformWifiScanResultToViewModel(response, this.onConnectCallback));
+            }
+            catch (e) {
+                toast_error("scanWifiNetworks", e);
+            }
+            finally {
+                this.isLoaderVisible(false);
+                this.scanWifiNetworksButtonDisable(false);
+                this.isTryToConnectToWifi(false);
+            }
+        };
+
+        this.onConnectCallback = async (ssid, encryptionType) => {
+            let password = "";
+            if (encryptionType !== "None") {
+                password = prompt("Please enter the password for " + ssid, "");
+            }
+            if (password !== null) {
+                this.isTryToConnectToWifi(true);
+                this.scanWifiNetworksButtonDisable(true);
+                this.lastScanResults.removeAll();
+
+                try {
+                    await this.ajaxHandler.connectoToNetwork(ssid, password)
+                    this.connectionInfo.doConnectionPolling(true);
+                    menuHandler.setMenu(menuHandler.menuKeys.connectionInfo);
+                } catch (e) {
+                    console.error(e);
+                }
+                finally {
+                    this.isTryToConnectToWifi(false);
+                    this.scanWifiNetworksButtonDisable(false);
+                }
+            }
+        }
+
+        this.afterMenuRequested = () => {
+            this.scanWifiNetworks();
+        }
+    }
+};
+</script>
+<script type="text/javascript">
+class MenuHandler {
+    constructor() {
+
+        this.menus = {};
+
+        this.menuKeys = {
+            home: 'menu-home',
+            connectToWifi: 'menu-connect-to-wifi',
+            settings: 'menu-settings',
+            connectionInfo: 'menu-connecion-info',
+        }
+
+        this.registerMenu = (menuName, menuItem) => {
+            this.menus[menuName] = menuItem;
+        }
+
+        this.getMenukey = (key) => {
+            if (this.menuKeys[key]) {
+                return this.menuKeys[key];
+            }
+            return this.menuKeys.home;
+        }
+
+        this.registerMenu = (key, templateName, viewModel) => {
+            this.menus[key] = {
+                templateName: templateName,
+                viewModel: viewModel
+            }
+        };
+
+        this.activeMenuTemplateName = ko.observable(null);
+        this.activeMenuViewModel = ko.observable(null);
+
+
+        this.setMenu = (key) => {
+            const menuItem = this.menus[key];
+            this.activeMenuTemplateName('menu-empty');
+            this.activeMenuViewModel(menuItem.viewModel); //set VM first!!!
+            this.activeMenuTemplateName(menuItem.templateName);
+
+            if (menuItem.viewModel.afterMenuRequested) {
+                menuItem.viewModel.afterMenuRequested();
+            }
+        }
+
+    }
+}
+</script>
+<script type="text/javascript">
+class MenuHomeViewModel {
+    constructor(menuHandler) {
+        
+       
+
+
+        this.afterMenuRequested = () => { };
+    }
+};
+</script>
+<script type="text/javascript">
+class MenuSettingsViewModel {
+    constructor(menuHandler, ajaxHandler, connectionInfo) {
+        this.ajaxHandler = ajaxHandler
+        this.connectionInfo = connectionInfo;
+        this.isLoaderVisible = ko.observable(false);
+
+        this.onWifiConnectionsClicked = () => {
+            menuHandler.setMenu(menuHandler.menuKeys.connectToWifi);
+        };
+
+        this.onConnectionInfoClicked = () => {
+            menuHandler.setMenu(menuHandler.menuKeys.connectionInfo);
+        };
+
+        this.ap_ssid = ko.observable('');
+        this.ap_password = ko.observable('');
+        this.connect_to_ssid = ko.observable('');
+        this.connect_to_password = ko.observable('');
+
+        this.getSettings = async () => {
+            this.isLoaderVisible(true);
+            try {
+                const response = await this.ajaxHandler.settings();
+                this.ap_ssid(response.ap_ssid);
+                this.ap_password(response.ap_password);
+                this.connect_to_ssid(response.connect_to_ssid);
+                this.connect_to_password(response.connect_to_password);
+
+                if (response.connect_to_ssid) {
+                    this.connectionInfo.doConnectionPolling(true);
+                }
+                else {
+                    menuHandler.setMenu(menuHandler.menuKeys.connectToWifi);
+                }
+            }
+            catch (e) {
+                toast_error("getSettings", e);
+            }
+            finally {
+                this.isLoaderVisible(false);
+            }
+        }
+
+        this.onRefreshSettingsClicked = async () => {
+            await this.getSettings()
+        }
+
+        this.onDisconnectClicked = async () => {
+            this.connect_to_password(null);
+            this.connect_to_ssid(null);
+            await this.onSaveSettingsClicked();
+        }
+
+
+        this.onSaveSettingsClicked = async () => {
+            await this.ajaxHandler.saveSettings({
+                ap_ssid: this.ap_ssid() || null,
+                ap_password: this.ap_password() || null,
+                connect_to_ssid: this.connect_to_ssid() || null,
+                connect_to_password: this.connect_to_password() || null
+            });
+
+            if (this.connect_to_ssid() || null) {
+                this.connectionInfo.doConnectionPolling(true);
+            }
+            else {
+                this.connectionInfo.doConnectionPolling(false);
+            }
+
+        }
+
+        this.getSettings();
+
+        this.getPasswordInputType = (isVisible) => {
+            return isVisible ? 'text' : 'password';
+        }
+
+        this.connect_to_password_visible = ko.observable(false);
+        this.connect_to_password_type_attr = ko.pureComputed(() => {
+            return this.getPasswordInputType(this.connect_to_password_visible());
+        }, this);
+
+        this.ap_password_visible = ko.observable(false);
+        this.ap_password_type_attr = ko.pureComputed(() => {
+            return this.getPasswordInputType(this.ap_password_visible());
+        }, this);
+
+        this.afterMenuRequested = () => {
+            this.getSettings();
+        }
+    }
+};
+</script>
+<script type="text/javascript">
+
+
+toast = function (text, type, autoHide = true, hasCloseButton = true) {
+    console.log(`toast: ${text}`);
+    Toastify({
+        text,
+        duration: autoHide ? 5000 : -1,
+        newWindow: false,
+        close: hasCloseButton,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover                    
+        className: `my-toastify-card ${type}`,
+        onClick: function () { } // Callback after click
+    }).showToast();
+}
+
+toast_error = function (from, exception, autoHide = false) {
+    console.error(exception);
+    toast(`ERROR (at ${from})\n${exception.message || exception.toString()}`, "danger", autoHide, true);
+}
+</script>
+<script type="text/javascript">
+class WifiNetworkListItem {
+    constructor(scanResult, onConnectCallback) {
+        this.ssid = scanResult.SSID;
+        this.rssi = parseInt(scanResult.RSSI);
+        this.encryptionType = scanResult.EncryptionType;
+        this.onConnectClick = async () => {
+            if (onConnectCallback) {
+                await onConnectCallback(this.ssid, this.encryptionType);
+            }
+        }
+    }
+}
+</script>
+
+<script type="text/html" id="connection-indicator">
+<div style="display: inline-block;">
+
+    <div style="display: inline-block;" data-bind="if: doConnectionPolling() && hasIpAddress()">
+        Connected: &nbsp;
+        <span style="display: inline-block;" data-bind="text:ipAddress"></span>
+    </div>
+
+
+    <div style="display: inline-block;" data-bind="if: doConnectionPolling() && !hasIpAddress()">
+        Connecting... &nbsp;
+        <div class="bar-loader" style="display: inline-block; width: 10px;"></div>
+    </div>
+
+    <div style="display: inline-block;" data-bind="ifnot: doConnectionPolling">
+        No Connection configured
+    </div>
+
+</div>
+</script>
+<script type="text/html" id="menu-connecion-info">
+<div>
+    Connection info
+</div>
+
+
+<div>
+    IP Address: <span data-bind="text:ipAddress"></span>
+</div>
+<div>
+    Signal strength:
+    <div style="display: inline-block;" data-bind="if: rssi()!==null">
+        <div style="display: inline-block;" data-bind=" template: { name: 'wifi-network-rssi-value', data: rssi }">
+        </div> (<span data-bind="text:rssi"></span> dBm)
+    </div>
+</div>
+
+<div>
+    Status:
+    <span data-bind="text:getStatusText()"></span>
+</div>
+</script>
+<script type="text/html" id="menu-connect-to-wifi">
+<div style="margin-left: auto;margin-right: auto;max-width: 180px;">
+    <button class="icon-button-with-text" data-bind="click: scanWifiNetworks, disable: scanWifiNetworksButtonDisable">
+        <div class="icon-button-body">
+            <div class="icon-container" data-bind="template:{name:'icon-arrows-rotate-solid'}"></div>
+            <div>&nbsp;Re-Scan WiFi Networks</div>
+        </div>
+    </button>
+</div>
+
+<div data-bind="if: isLoaderVisible">
+    <div class="spining-loader-container">
+        <div class="spining-loader"></div>
+    </div>
+</div>
+<div data-bind="ifnot: isLoaderVisible">
+    <div data-bind="ifnot: isTryToConnectToWifi">
+        <table>
+            <thead>
+                <tr>
+                    <th>SSID</th>
+                    <th>Signal</th>
+                    <th>Encryption Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: lastScanResults">
+                <tr data-bind="template: { name: 'wifi-network-list-item', data: $data }"></tr>
+            </tbody>
+        </table>
+    </div>
+    <div data-bind="if: isTryToConnectToWifi">
+        Trying to connect to wifi network...
+    </div>
+</div>
+</script>
+<script type="text/html" id="menu-empty">
+<div></div>
+
+</script>
+<script type="text/html" id="menu-home">
+<div>ESP 32 wifi-selector sample app</div>
+
+<div>
+    v1.1.1
+</div>
+
+</script>
+<script type="text/html" id="menu-settings">
+<div data-bind="if: isLoaderVisible">
+   <div class="spining-loader-container">
+      <div class="spining-loader"></div>
+   </div>
+</div>
+<div data-bind="ifnot: isLoaderVisible">
+   <div>
+      <div>Conncetions</div>
+      <div style="margin-left: 10px;">
+         <button class="icon-button-with-text" data-bind="click: onWifiConnectionsClicked">
+            <div class="icon-button-body">
+               <div class="icon-container" data-bind="template:{name:'icon-wifi-solid'}">
+               </div>
+               <div>&nbsp;Scan Wifi Networks</div>
+            </div>
+         </button>
+
+
+         <button class="icon-button-with-text" data-bind="click: onConnectionInfoClicked">
+            <div class="icon-button-body">
+               <div class="icon-container" data-bind="template:{name:'icon-network-wired-solid'}"></div>
+               <div>&nbsp;Connection Info</div>
+            </div>
+         </button>
+      </div>
+   </div>
+
+   <div style="margin-top: 10px;">
+      <div>Raw Configuration</div>
+      <div style="margin-left: 10px;">
+         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+            <button class="icon-button-with-text" data-bind="click: onRefreshSettingsClicked">
+               <div class="icon-button-body">
+                  <div class="icon-container" data-bind="template:{name:'icon-arrows-rotate-solid'}"></div>
+                  <div>&nbsp;Refresh</div>
+               </div>
+            </button>
+         </div>
+         <div>
+            <label for="ap_ssid">AP SSID:</label>
+            <input type="text" id="ap_ssid" data-bind="value: ap_ssid" />
+         </div>
+
+         <div>
+            <label for="ap_password">AP Password:</label>
+            <input id="ap_password" data-bind="value: ap_password, attr: { type: ap_password_type_attr }" />
+            <input type="checkbox" id="ap_password_visible" data-bind="checked: ap_password_visible" />
+         </div>
+
+         <div>
+            <button data-bind='click: onDisconnectClicked'>Disconnect and forget Wifi</button>
+         </div>
+
+         <div>
+            <label for="connect_to_ssid">Network to connect SSID:</label>
+            <input type="text" id="connect_to_ssid" data-bind="value: connect_to_ssid" />
+         </div>
+
+
+         <div>
+            <label for="connect_to_password">Network to connect Password:</label>
+            <input id="connect_to_password"
+               data-bind="value: connect_to_password, attr: { type: connect_to_password_type_attr }" />
+            <input type="checkbox" id="connect_to_password_visible" data-bind="checked: connect_to_password_visible" />
+         </div>
+
+         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+            <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
+               <div class="icon-button-body">
+                  <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
+                  <div>&nbsp;Save</div>
+               </div>
+            </button>
+         </div>
+
+      </div>
+   </div>
+
+</div>
+</script>
+<script type="text/html" id="wifi-network-list-item">
+<td data-bind="text: ssid"></td>            
+<td style="width: 50px;" data-bind="template: { name: 'wifi-network-rssi-value', data: rssi }"></td>
+<td data-bind="text: encryptionType" style="width: 150px;"></td>        
+<td style="width: 50px;"><button style="height: 30px;" data-bind="click:onConnectClick">Connect</button></td> 
+</script>
+<script type="text/html" id="wifi-network-rssi-value">
+<!-- ko if: $data >= -30 -->
+<span>Amazing</span>
+<!-- /ko -->
+
+<!-- ko if: -70 <= $data &&  $data < -30 -->
+<span>Excellent</span>
+<!-- /ko -->
+
+<!-- ko if: -85 <= $data && $data < -70 -->
+<span>Good</span>
+<!-- /ko -->
+
+<!-- ko if: -100 <= $data && $data < -85 -->
+<span>Fair</span>
+<!-- /ko -->
+
+<!-- ko if: $data < -100 -->
+<span>Poor</span>
+<!-- /ko -->
+</script>
+
+<script type="text/html" id="icon-arrows-rotate-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8c62.5-62.5 163.8-62.5 226.3 0L386.3 160 352 160c-17.7 0-32 14.3-32 32s14.3 32 32 32l111.5 0c0 0 0 0 0 0l.4 0c17.7 0 32-14.3 32-32l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 35.2L414.4 97.6c-87.5-87.5-229.3-87.5-316.8 0C73.2 122 55.6 150.7 44.8 181.4c-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2c-4 4-6.7 8.8-8.1 14c-.3 1.2-.6 2.5-.8 3.8c-.3 1.7-.4 3.4-.4 5.1L16 432c0 17.7 14.3 32 32 32s32-14.3 32-32l0-35.1 17.6 17.5c0 0 0 0 0 0c87.5 87.4 229.3 87.4 316.7 0c24.4-24.4 42.1-53.1 52.9-83.8c5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8c-62.5 62.5-163.8 62.5-226.3 0l-.1-.1L125.6 352l34.4 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L48.4 288c-1.6 0-3.2 .1-4.8 .3s-3.1 .5-4.6 1z" />
+</svg>
+</script>
+<script type="text/html" id="icon-floppy-disk-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-242.7c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32L64 32zm0 96c0-17.7 14.3-32 32-32l192 0c17.7 0 32 14.3 32 32l0 64c0 17.7-14.3 32-32 32L96 224c-17.7 0-32-14.3-32-32l0-64zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+</svg>
+</script>
+<script type="text/html" id="icon-gear-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
+</svg>
+</script>
+<script type="text/html" id="icon-house-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+</svg>
+</script>
+<script type="text/html" id="icon-network-wired-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M256 64l128 0 0 64-128 0 0-64zM240 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l48 0 0 32L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l96 0 0 32-48 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l160 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0-32 256 0 0 32-48 0c-26.5 0-48 21.5-48 48l0 96c0 26.5 21.5 48 48 48l160 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48l-48 0 0-32 96 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-256 0 0-32 48 0c26.5 0 48-21.5 48-48l0-96c0-26.5-21.5-48-48-48L240 0zM96 448l0-64 128 0 0 64L96 448zm320-64l128 0 0 64-128 0 0-64z" />
+</svg>
+</script>
+<script type="text/html" id="icon-wifi-solid">
+<svg xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+    <path
+        d="M54.2 202.9C123.2 136.7 216.8 96 320 96s196.8 40.7 265.8 106.9c12.8 12.2 33 11.8 45.2-.9s11.8-33-.9-45.2C549.7 79.5 440.4 32 320 32S90.3 79.5 9.8 156.7C-2.9 169-3.3 189.2 8.9 202s32.5 13.2 45.2 .9zM320 256c56.8 0 108.6 21.1 148.2 56c13.3 11.7 33.5 10.4 45.2-2.8s10.4-33.5-2.8-45.2C459.8 219.2 393 192 320 192s-139.8 27.2-190.5 72c-13.3 11.7-14.5 31.9-2.8 45.2s31.9 14.5 45.2 2.8c39.5-34.9 91.3-56 148.2-56zm64 160a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z" />
+</svg>
+</script>
+
+</head>
+
+<body onload="init()">
+    <div class="app-container" id="main-app" style="display: none;">
+        <div class="menu-container">
+
+            <button data-bind="click: ()=>{menuHandler.setMenu(menuHandler.menuKeys.home)}">
+                <div class="icon-container" data-bind="template:{name:'icon-house-solid'}"></div>
+            </button>
+
+
+            <div data-bind="template: { name: 'connection-indicator', data: connectionInfo }"></div>
+            <button data-bind="click: ()=>{menuHandler.setMenu(menuHandler.menuKeys.settings)}">
+                <div class="icon-container" data-bind="template:{name:'icon-gear-solid'}"></div>
+            </button>
+        </div>
+        <div class="active-menu-container"
+            data-bind="template: { name: menuHandler.activeMenuTemplateName, data: menuHandler.activeMenuViewModel }"></div>
+    </div>
+    <div id="ko-js-error" style="display: block;">
+        knockout.js is not loaded...
+    </div>
+</body>
+
+</html>

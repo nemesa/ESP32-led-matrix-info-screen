@@ -1,2 +1,2 @@
-# ESP32-led-matrix-info-screen
-ESP32-led-matrix-info-screen
+# ESP32-wifi-selector
+ESP32-wifi-selector

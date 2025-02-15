@@ -1,0 +1,15 @@
+{
+
+    "compilerOptions": {
+        "module": "CommonJS",
+        "esModuleInterop": true
+      },    
+    "ts-node": {
+      "transpileOnly": true,  
+      "files": true,  
+      "compilerOptions": {        
+        "module": "CommonJS",
+        "esModuleInterop": true
+      }
+    },
+  }
