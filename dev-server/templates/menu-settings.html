@@ -64,16 +64,41 @@
             <input type="checkbox" id="connect_to_password_visible" data-bind="checked: connect_to_password_visible" />
          </div>
 
-         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
-            <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
-               <div class="icon-button-body">
-                  <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
-                  <div>&nbsp;Save</div>
-               </div>
-            </button>
-         </div>
-
       </div>
+   </div>
+
+   <div style="margin-top: 10px;">
+      <div>Led Matrix</div>
+
+      <div style="margin-left: 10px;">
+         <div>
+            <label for="led_matrix_brightness">Brightness:</label>
+            <input style="position: relative; top: 7px;" type="range" min="1" max="60"
+               data-bind="value: led_matrix_brightness" id="led_matrix_brightness">
+            <input style="width: 25px;" type="text" id="led_matrix_brightness_text"
+               data-bind="value: led_matrix_brightness" />
+         </div>
+      </div>
+   </div>
+
+
+   <!-- <div>Led Matrix</div>
+         <div>
+             <label for="led_matrix_brightness">Brightness:</label> 
+             <input type="range" min="1" max="255" data-bind="value: led_matrix_brightness" class="slider" id="led_matrix_brightness"> 
+         </div>
+      </div>
+    -->
+
+
+
+   <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+      <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
+         <div class="icon-button-body">
+            <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
+            <div>&nbsp;Save</div>
+         </div>
+      </button>
    </div>
 
 </div>

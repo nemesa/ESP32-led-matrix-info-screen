@@ -20,8 +20,6 @@ void wifiManagerInit()
 void wifiManagerCreateAP()
 {
 
-    settingsJson = readSettingsJson();
-
     const char *ap_ssid = settingsJson["ap_ssid"];
     // Connect to WiFi network
 

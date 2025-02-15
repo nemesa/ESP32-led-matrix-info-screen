@@ -57,6 +57,7 @@ let simConfig = {
             "ap_password": null,
             "connect_to_ssid": "some ssid",
             "connect_to_password": "some password",
+            "led_matrix_brightness": 20,
         }
 
     },
@@ -139,6 +140,7 @@ app.get('/settings', async (req, res) => {
     }
     res.json(simConfig.settings.response)
 })
+
 app.post('/settings', (req, res) => {
     console.log(`${req.method} ${req.url}`)
 

@@ -104,9 +104,25 @@ void led_matrix_setup(uint8_t bightness)
   // matrix->print(str);
 }
 
+void led_matrix_setBrightness(uint8_t bightness)
+{
+  matrix->setBrightness8(bightness);
+}
+
 void led_matrix_clearScreen()
 {
   matrix->clearScreen();
+}
+
+void led_matrix_clearRectangle(int16_t x, int16_t y, int16_t w, int16_t h)
+{
+  matrix->fillRect(x, y, w, h, 0);
+}
+
+void led_matrix_write_str(int16_t x, int16_t y, String str)
+{
+  matrix->setCursor(x, y);  
+  matrix->print(str);
 }
 
 void led_matrix_write(int16_t x, int16_t y, char *str)

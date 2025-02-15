@@ -19,6 +19,16 @@ JsonDocument readSettingsJson()
     return doc;
 }
 
+void settingsHandlerSetup()
+{
+    if (!SPIFFS.begin(true))
+    {
+        Serial.println("An Error has occurred while mounting SPIFFS");
+        return;
+    }    
+    settingsJson = readSettingsJson();
+}
+
 void writeSettingsJson(JsonDocument doc)
 {
     Serial.println(F("write settings file"));

@@ -16,6 +16,8 @@ class MenuSettingsViewModel {
         this.ap_password = ko.observable('');
         this.connect_to_ssid = ko.observable('');
         this.connect_to_password = ko.observable('');
+        this.led_matrix_brightness = ko.observable(1);
+
 
         this.getSettings = async () => {
             this.isLoaderVisible(true);
@@ -25,6 +27,7 @@ class MenuSettingsViewModel {
                 this.ap_password(response.ap_password);
                 this.connect_to_ssid(response.connect_to_ssid);
                 this.connect_to_password(response.connect_to_password);
+                this.led_matrix_brightness(response.led_matrix_brightness);
 
                 if (response.connect_to_ssid) {
                     this.connectionInfo.doConnectionPolling(true);
@@ -51,13 +54,28 @@ class MenuSettingsViewModel {
             await this.onSaveSettingsClicked();
         }
 
+        this.getBrightness = () => {
+            let value = this.led_matrix_brightness() || 1;
+
+            if (value < 1) {
+                value = 1;
+                this.led_matrix_brightness(1);
+            }
+            else if (value > 60) {
+                value = 60;
+                this.led_matrix_brightness(60);
+            }
+
+            return value;
+        }
 
         this.onSaveSettingsClicked = async () => {
             await this.ajaxHandler.saveSettings({
                 ap_ssid: this.ap_ssid() || null,
                 ap_password: this.ap_password() || null,
                 connect_to_ssid: this.connect_to_ssid() || null,
-                connect_to_password: this.connect_to_password() || null
+                connect_to_password: this.connect_to_password() || null,
+                led_matrix_brightness: this.getBrightness()
             });
 
             if (this.connect_to_ssid() || null) {

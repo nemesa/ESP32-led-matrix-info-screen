@@ -635,6 +635,8 @@ class MenuSettingsViewModel {
         this.ap_password = ko.observable('');
         this.connect_to_ssid = ko.observable('');
         this.connect_to_password = ko.observable('');
+        this.led_matrix_brightness = ko.observable(1);
+        
 
         this.getSettings = async () => {
             this.isLoaderVisible(true);
@@ -644,6 +646,7 @@ class MenuSettingsViewModel {
                 this.ap_password(response.ap_password);
                 this.connect_to_ssid(response.connect_to_ssid);
                 this.connect_to_password(response.connect_to_password);
+                this.led_matrix_brightness(response.led_matrix_brightness);
 
                 if (response.connect_to_ssid) {
                     this.connectionInfo.doConnectionPolling(true);
@@ -676,7 +679,8 @@ class MenuSettingsViewModel {
                 ap_ssid: this.ap_ssid() || null,
                 ap_password: this.ap_password() || null,
                 connect_to_ssid: this.connect_to_ssid() || null,
-                connect_to_password: this.connect_to_password() || null
+                connect_to_password: this.connect_to_password() || null,
+                led_matrix_brightness: this.led_matrix_brightness() || 1
             });
 
             if (this.connect_to_ssid() || null) {
@@ -905,16 +909,41 @@ class WifiNetworkListItem {
             <input type="checkbox" id="connect_to_password_visible" data-bind="checked: connect_to_password_visible" />
          </div>
 
-         <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
-            <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
-               <div class="icon-button-body">
-                  <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
-                  <div>&nbsp;Save</div>
-               </div>
-            </button>
-         </div>
-
       </div>
+   </div>
+
+   <div style="margin-top: 10px;">
+      <div>Led Matrix</div>
+
+      <div style="margin-left: 10px;">
+         <div>
+            <label for="led_matrix_brightness">Brightness:</label>
+            <input style="position: relative; top: 7px;" type="range" min="1" max="255"
+               data-bind="value: led_matrix_brightness" id="led_matrix_brightness">
+            <input style="width: 25px;" type="text" id="led_matrix_brightness_text"
+               data-bind="value: led_matrix_brightness" />
+         </div>
+      </div>
+   </div>
+
+
+   <!-- <div>Led Matrix</div>
+         <div>
+             <label for="led_matrix_brightness">Brightness:</label> 
+             <input type="range" min="1" max="255" data-bind="value: led_matrix_brightness" class="slider" id="led_matrix_brightness"> 
+         </div>
+      </div>
+    -->
+
+
+
+   <div style="margin-left: auto;margin-right: auto;max-width: 100px;">
+      <button class="icon-button-with-text" data-bind="click: onSaveSettingsClicked">
+         <div class="icon-button-body">
+            <div class="icon-container" data-bind="template:{name:'icon-floppy-disk-solid'}"></div>
+            <div>&nbsp;Save</div>
+         </div>
+      </button>
    </div>
 
 </div>

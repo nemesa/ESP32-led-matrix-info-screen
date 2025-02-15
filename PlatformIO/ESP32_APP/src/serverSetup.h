@@ -1,6 +1,7 @@
 #include "ESPAsyncWebServer.h"
 #include "SPIFFS.h"
 #include "dateTimeHandler.h"
+#include "ledMatrix.h"
 // https://github.com/ESP32Async/ESPAsyncWebServer#send-large-webpage-from-progmem
 AsyncWebServer server(80);
 
@@ -79,7 +80,10 @@ void setupServer()
       deserializeJson(doc, data);
 
       if (request->url() == "/settings"){
-        Serial.println("HTTP_POST /settings");          
+        Serial.println("HTTP_POST /settings");
+        if(doc["led_matrix_brightness"] != settingsJson["led_matrix_brightness"]){
+          led_matrix_setBrightness(uint8_t(doc["led_matrix_brightness"]));
+        }
         updateSettings(doc);
         if(doc["connect_to_ssid"]){
           WIFI_CONNECTION_MANAGER_TRY_CONNECT = true;
