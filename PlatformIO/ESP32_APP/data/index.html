@@ -636,7 +636,7 @@ class MenuSettingsViewModel {
         this.connect_to_ssid = ko.observable('');
         this.connect_to_password = ko.observable('');
         this.led_matrix_brightness = ko.observable(1);
-        
+
 
         this.getSettings = async () => {
             this.isLoaderVisible(true);
@@ -673,6 +673,20 @@ class MenuSettingsViewModel {
             await this.onSaveSettingsClicked();
         }
 
+        this.getBrightness = () => {
+            let value = this.led_matrix_brightness() || 1;
+
+            if (value < 1) {
+                value = 1;
+                this.led_matrix_brightness(1);
+            }
+            else if (value > 60) {
+                value = 60;
+                this.led_matrix_brightness(60);
+            }
+
+            return value;
+        }
 
         this.onSaveSettingsClicked = async () => {
             await this.ajaxHandler.saveSettings({
@@ -680,7 +694,7 @@ class MenuSettingsViewModel {
                 ap_password: this.ap_password() || null,
                 connect_to_ssid: this.connect_to_ssid() || null,
                 connect_to_password: this.connect_to_password() || null,
-                led_matrix_brightness: this.led_matrix_brightness() || 1
+                led_matrix_brightness: this.getBrightness()
             });
 
             if (this.connect_to_ssid() || null) {
@@ -918,7 +932,7 @@ class WifiNetworkListItem {
       <div style="margin-left: 10px;">
          <div>
             <label for="led_matrix_brightness">Brightness:</label>
-            <input style="position: relative; top: 7px;" type="range" min="1" max="255"
+            <input style="position: relative; top: 7px;" type="range" min="1" max="60"
                data-bind="value: led_matrix_brightness" id="led_matrix_brightness">
             <input style="width: 25px;" type="text" id="led_matrix_brightness_text"
                data-bind="value: led_matrix_brightness" />
